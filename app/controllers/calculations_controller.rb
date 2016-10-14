@@ -17,9 +17,10 @@ class CalculationsController < ApplicationController
     @character_count_without_spaces =
       @character_count_with_spaces - space_count
 
-    @word_count = space_count + 1
+      array = @text.split(" ")
+    @word_count = array.length
 
-    @occurrences = @text.count @special_word
+    @occurrences = array.count @special_word
 
     # ================================================================================
     # Your code goes above.
