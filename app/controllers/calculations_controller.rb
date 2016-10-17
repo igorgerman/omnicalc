@@ -13,13 +13,18 @@ class CalculationsController < ApplicationController
 
     @character_count_with_spaces = @text.length
 
+    @newtext = @text.downcase
+
       space_count = @text.count " "
+
     @character_count_without_spaces =
       @character_count_with_spaces - space_count
 
-      @text.downcase
 
-      @array = @text.split(" ")
+
+
+      @array = @newtext.split(" ")
+
     @word_count = @array.length
       @speci_dc = @special_word.downcase
     @occurrences = @array.count @speci_dc
@@ -43,7 +48,7 @@ class CalculationsController < ApplicationController
     # The principal value the user input is in the decimal @principal.
     # ================================================================================
 
-    periodic = @apr/12.0
+    periodic = (@apr/100)/12.0
     n = @years * 12.0
     per_n = @principal * periodic
     oneplusr = 1.0 + periodic
@@ -52,7 +57,8 @@ class CalculationsController < ApplicationController
 
     @monthly_payment = per_n/denominator
 
-    # ================================================================================
+
+ ================================================================================
     # Your code goes above.
     # ================================================================================
 
