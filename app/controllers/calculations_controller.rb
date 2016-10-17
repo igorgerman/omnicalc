@@ -17,10 +17,12 @@ class CalculationsController < ApplicationController
     @character_count_without_spaces =
       @character_count_with_spaces - space_count
 
-      array = @text.split(" ")
-    @word_count = array.length
+      @text.downcase
 
-    @occurrences = array.count @special_word
+      @array = @text.split(" ")
+    @word_count = @array.length
+      @speci_dc = @special_word.downcase
+    @occurrences = @array.count @speci_dc
 
     # ================================================================================
     # Your code goes above.
@@ -117,7 +119,16 @@ class CalculationsController < ApplicationController
 
     @standard_deviation = @variance**(0.5)
 
-    @mode = "Replace this string with your answer."
+#mode
+    @most_present_number_count = 0
+
+ @sorted_numbers.each do |snum|
+   if @sorted_numbers.count(snum) > @most_present_number_count
+     @most_present_number_count = @sorted_numbers.count(snum)
+     @most_present_number = snum
+   end
+ end
+   @mode = @most_present_number
 
     # ================================================================================
     # Your code goes above.
