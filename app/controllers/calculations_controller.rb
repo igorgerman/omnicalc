@@ -95,22 +95,27 @@ class CalculationsController < ApplicationController
     @sorted_numbers = @numbers.sort
 
     @count = @numbers.count
-    
+
     @minimum = @numbers.min
 
     @maximum = @numbers.max
 
-    # @range = @max - @min
+    @range = @maximum - @minimum
 
-    @median = "Replace this string with your answer."
+    @median = (@sorted_numbers[(@count-1.0)/2] + @sorted_numbers[@count/2])/2
 
-    @sum = "Replace this string with your answer."
+    @sum = @numbers.sum
 
-    @mean = "Replace this string with your answer."
+    @mean = @sum/@count
 
-    @variance = "Replace this string with your answer."
+      vararray = []
+    @numbers.each do |unit|
+       vararray.push((@mean - unit)**2)
+      end
 
-    @standard_deviation = "Replace this string with your answer."
+    @variance = vararray.sum / vararray.count
+
+    @standard_deviation = @variance**(0.5)
 
     @mode = "Replace this string with your answer."
 
